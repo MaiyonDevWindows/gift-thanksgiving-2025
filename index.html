@@ -39,6 +39,21 @@
         <div class="hearts-container"></div>
     </div>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const envelopeElement = document.querySelector('.envelope-wrapper');
+            function triggerClick(element) {
+                if (element) {
+                    element.click(); 
+                }
+            }
+            setTimeout(function() {
+                triggerClick(envelopeElement); 
+                setTimeout(function() {
+                    triggerClick(envelopeElement);
+                }, 10); 
+            }, 10);
+        });
+
         const envelopeWrapper = document.querySelector('.envelope-wrapper');
         const heartsContainer = document.querySelector('.hearts-container');
         let isOpened = false;
