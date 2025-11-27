@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&#128525; Thân gửi cục cưng &#128525;</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+</head>
+<body>
+    <div class="envelope-wrapper">
+        <div class="envelope">
+            <div class="bottom-flap"></div>
+            <div class="content">
+                <div class="content-front"></div> 
+                <div class="content-back">
+                    <div class="text-content">
+                        <h3 class="content-head">Gửi em yêu, nhân ngày lễ tạ ơn &#128536;</h3>
+                        <p class="content-div">
+                            &#x2764;&#xfe0f;&#x200d;&#x1fa79;Cũng hơn chín tháng kể từ khi chúng ta bắt đầu quen nhau rồi nhỉ; chúng mình cũng gặp nhau, có biết bao niềm vui, nhưng cũng không thiếu những khoảnh khắc buồn nữa. Anh biết, có những lúc anh làm em buồn, như hôm qua, thái độ của anh không tốt khiến em khó chịu. Anh biết có những lúc chúng ta cãi nhau, anh không kiềm chế đã có những lời nói không hay khiến em bị tổn thương, anh cũng hiểu những tổn thương có thể làm em mãi không quên. Anh thật sự xin lỗi em vì tất cả những điều đó.&#x2764;&#xfe0f;&#x200d;&#x1fa79;
+                        </p>
+                        <p class="content-div">
+                           &#129655;Anh cảm ơn em, không chỉ vì tình yêu mà em luôn dành cho anh, mà còn vì em đã bước vào cuộc đời anh và cho anh cơ hội được yêu em, chia sẻ nhiều khoảnh khắc với em, đó thật sự là món quà và là điều anh đang cảm thấy ý nghĩa nhất lúc này. Hơn thế, anh cảm ơn em đã luôn kiên nhẫn với anh.&#129655;
+                        </p>
+                        <p class="content-div">
+                            &#128157;Nhân dịp Lễ Tạ Ơn này, anh cầu chúc cho tình yêu đôi mình sẽ luôn bền chặt, anh mong chờ được cùng em tạo nên thật nhiều kỷ niệm đẹp. Anh sẽ cố gắng hoàn thiện mình hơn, để trở thành người bạn trai tốt hơn, ngày càng phù hợp và xứng đáng với tình yêu của em. Anh cũng sẽ cố gắng hơn nữa nè, để được tiến gần với em hơn. Cảm ơn em, cục cưng của anh, vì đã là món quà quý giá nhất trong đời anh. Anh yêu em rất nhiều.&#128157;
+                        </p>
+                    </div>
+                    <div class="signature">
+                        <p>Yêu em,</p>
+                        <p>Maidon kh hề bel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="top-flap"></div>
+            <div class="front-panel"></div>
+        </div>
+        <div class="hearts-container"></div>
+    </div>
+    <script>
+        const envelopeWrapper = document.querySelector('.envelope-wrapper');
+        const heartsContainer = document.querySelector('.hearts-container');
+        let isOpened = false;
+        let intervalId;
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const size = Math.random() * 20 + 15; 
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            const startLeft = Math.random() * 80 + 10; 
+            heart.style.left = `${startLeft}%`;
+            const colors = ['#ff6384', '#d4375a', '#ff99aa'];
+            heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]; 
+            const animationDuration = Math.random() * 3 + 2; 
+            heart.style.animationDuration = `${animationDuration}s`;
+            const animationDelay = Math.random() * 0.5;
+            heart.style.animationDelay = `${animationDelay}s`;
+            const endOffsetX = Math.random() * 200 - 100;
+            heart.style.setProperty('--heart-end-offset-x', `${endOffsetX}px`);
+            heartsContainer.appendChild(heart);
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+        envelopeWrapper.addEventListener('click', () => {
+            if (!isOpened) {
+                envelopeWrapper.classList.add('open');
+                heartsContainer.style.display = 'block';
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(createHeart, i * 100);
+                }
+                isOpened = true;
+            } else {
+                envelopeWrapper.classList.remove('open');
+                heartsContainer.style.display = 'none';
+                isOpened = false;
+            }
+        });
+    </script>
+</body>
+</html>

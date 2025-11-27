@@ -1,0 +1,236 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffeeff; 
+    margin: 0;
+    font-family: sans-serif;
+}
+.envelope-wrapper {
+    position: relative;
+    width: 450px; 
+    height: 300px;
+    cursor: pointer;
+    z-index: 1; 
+}
+.envelope {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+.front-panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #FF416C; 
+    z-index: 2; 
+}
+.bottom-flap {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 225px 150px 225px; 
+    border-color: transparent transparent #D40030 transparent;
+    bottom: 0;
+    left: 0;
+    z-index: 1; 
+}
+.top-flap {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 150px 225px 0 225px; 
+    border-color: #D40030 transparent transparent transparent;
+    top: 0;
+    left: 0;
+    transform-origin: top;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 3; 
+}
+.content {
+    position: absolute;
+    width: 90%;
+    min-height: 90%; 
+    background-color: #ffffff; 
+    padding: 20px; 
+    box-sizing: border-box;
+    z-index: 0; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(0); 
+    transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                width 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                min-height 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                opacity 0.4s ease-in-out, 
+                z-index 0s 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0; 
+    text-align: center;
+}
+.envelope-wrapper.open .top-flap {
+    transform: rotateX(180deg);
+}
+.envelope-wrapper.open .content {
+    width: 90%;
+    min-height: 90%;
+    transform: translate(-50%, -50%) translateY(-50px);
+    opacity: 1; 
+    z-index: 10;
+    transition-delay: 0.3s;
+}
+
+.text-content {
+    opacity: 0; 
+}
+@keyframes fade-in {
+    from { 
+        opacity: 0; 
+    }
+    to { 
+        opacity: 1; 
+    }
+}
+.envelope-wrapper.open .content .text-content {
+    animation: fade-in 1s ease-in forwards;
+    animation-delay: 1.4s; 
+}
+@keyframes heart-fly {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 0;
+        bottom: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(5deg);
+    }
+    100% {
+        transform: translate(
+            calc(-50% + var(--heart-end-offset-x)), 
+            -100vh
+        ) scale(1.2) rotate(-10deg);
+        opacity: 0;
+    }
+}
+.hearts-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 5;
+    display: none;
+    overflow: hidden;
+}
+.heart {
+    position: absolute;
+    background-color: #FF416C;
+    transform: rotate(-45deg);
+    border-radius: 50% 50% 0 0;
+    opacity: 0; 
+    animation: heart-fly var(--animation-duration, 3s) ease-out forwards var(--animation-delay, 0s);
+    --heart-end-offset-x: 0px; 
+}
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    border-radius: 50%;
+}
+.heart::before {
+    left: -50%;
+}
+.heart::after {
+    top: -50%;
+}
+@media (max-width: 425px) {
+    .envelope-wrapper {
+        width: 85vw; 
+        height: 56.67vw; 
+        max-width: 360px; 
+    }
+    .bottom-flap {
+        border-width: 0 42.5vw 28.33vw 42.5vw; 
+    }
+    .top-flap {
+        border-width: 28.33vw 42.5vw 0 42.5vw; 
+    }
+    .envelope-wrapper.open .content {
+        transform: translate(-50%, -50%) translateY(-15vw);
+    }
+    .content {
+        padding: 15px;
+        font-size: 0.9em;
+    }
+    .heart {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+.content-head {
+    color: #D40030; 
+    margin-top: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+@media (max-width: 425px) {
+    .content-head {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 375px) {
+    .content-head {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 320px) {
+    .content-head {
+        font-size: 1em;
+    }
+}
+
+.content-back {
+    position: relative; 
+    width: 100%;
+    height: 100%; 
+    padding: 20px;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+}
+
+.signature {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    text-align: right; 
+    color: #000000;
+    font-size: 0.8em;
+    line-height: 1.4;
+    font-style: italic;
+    opacity: 0;
+}
+
+.envelope-wrapper.open .signature {
+    animation: fade-in 1s ease-in forwards;
+    animation-delay: 2.6s; 
+}
+
+@media (max-width: 425px) {
+    .signature {
+        bottom: 15px;
+        right: 20px;
+        font-size: 0.7em;
+    }
+}
