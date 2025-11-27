@@ -8,6 +8,9 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
 </head>
 <body>
+    <audio id="background-audio" autoplay loop muted>
+        <source src="./nhac.mp3" type="audio/mpeg">
+    </audio>
     <div class="envelope-wrapper">
         <div class="envelope">
             <div class="bottom-flap"></div>
@@ -80,6 +83,13 @@
             });
         }
         envelopeWrapper.addEventListener('click', () => {
+            const audio = document.getElementById('background-audio');
+            if (audio && audio.muted) {
+                audio.muted = false; 
+                audio.play().catch(error => {
+                    
+                }); 
+            }
             if (!isOpened) {
                 envelopeWrapper.classList.add('open');
                 heartsContainer.style.display = 'block';
