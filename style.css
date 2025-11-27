@@ -6,7 +6,7 @@ body {
     background-color: #ffeeff; 
     margin: 0;
     font-family: sans-serif;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 .envelope-wrapper {
     position: relative;
