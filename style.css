@@ -6,7 +6,7 @@ body {
     background-color: #ffeeff; 
     margin: 0;
     font-family: sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 .envelope-wrapper {
     position: relative;
@@ -63,24 +63,26 @@ body {
     z-index: 1; 
 }
 .content {
-    position: absolute;
-    width: 90%;
-    min-height: 90%; 
     background-color: #ffffff; 
-    padding: 20px; 
+    width: 90%;
+    max-height: 10%;
     box-sizing: border-box;
-    z-index: 0; 
+    position: absolute;
     top: 50%;
     left: 50%;
+    padding: 20px; 
+    text-align: center;
+    z-index: 0; 
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transform: translate(-50%, -50%) translateY(0); 
     transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), 
                 width 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), 
                 max-height 0.8s cubic-bezier(0.215, 0.61, 0.355, 1),
                 opacity 0.4s ease-in-out, 
-                z-index 0s 0.3s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0; 
-    text-align: center;
+                z-index 0s 0.3s,
+                visibility 0s 0.8s;
 }
 .heart-seal {
     position: absolute;
@@ -212,6 +214,7 @@ body {
         transform: translate(-50%, -50%) translateY(0);
         max-height: 120vw;
         overflow-y: auto;
+        visibility: visible;
     }
     .content {
         padding: 15px;
