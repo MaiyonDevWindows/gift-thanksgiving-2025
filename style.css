@@ -209,8 +209,8 @@ body {
         border-width: 28.33vw 42.5vw 0 42.5vw; 
     }
     .envelope-wrapper.open .content {
-        transform: translate(-50%, -50%) translateY(-5vw);
-        max-height: 120vw;
+        transform: translate(-50%, -50%) translateY(0);
+        max-height: 80vw;
         overflow-y: auto;
     }
     .content {
